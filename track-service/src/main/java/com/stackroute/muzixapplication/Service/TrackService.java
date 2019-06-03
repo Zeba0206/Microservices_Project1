@@ -9,7 +9,7 @@ import java.util.List;
 
 //import com.stackroute.muzixapplication.exception.TrackAlreadyExistsException;
 
-public interface MuzixService {
+public interface TrackService {
 
 
     public Track saveAlbum(Track album) throws TrackAlreadyExistsException;

@@ -1,7 +1,7 @@
 package com.stackroute.muzixapplication.repository;
 
 import com.stackroute.muzixapplication.domain.Track;
-import com.stackroute.muzixapplication.respository.MuzixRepository;
+import com.stackroute.muzixapplication.respository.TrackRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,19 +16,19 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest //to slice a particular data
 
-public class MuzixRepositoryTest {
+public class TrackRepositoryTest {
 
     @Autowired
-    private MuzixRepository muzixRepository;
+    private TrackRepository trackRepository;
     private Track album;
 
     @Before
     public void setUp()
     {
         album = new Track();
-        album.setTrackid(99);
-        album.setTrackname("Shape of you");
-        album.setTrackartist("Ed Sheeran");
+        album.setTrackId(99);
+        album.setTrackName("Shape of you");
+        album.setTrackArtist("Ed Sheeran");
         album.setGenre("rock");
 
     }
@@ -36,23 +36,23 @@ public class MuzixRepositoryTest {
     @After
     public void tearDown(){
 
-        muzixRepository.deleteAll();
+        trackRepository.deleteAll();
     }
 
 
     @Test
     public void testSaveUser(){
-        muzixRepository.save(album);
-        Track fetchUser = muzixRepository.findById(album.getTrackid()).get();
-        Assert.assertEquals(99,fetchUser.getTrackid());
+        trackRepository.save(album);
+        Track fetchUser = trackRepository.findById(album.getTrackId()).get();
+        Assert.assertEquals(99,fetchUser.getTrackId());
 
     }
 
     @Test
     public void testSaveFailure(){
         Track testUser = new Track(99,"Shape of you","Ed Sheeran","rock");
-        muzixRepository.save(album);
-        Track fetchUser = muzixRepository.findById(album.getTrackid()).get();
+        trackRepository.save(album);
+        Track fetchUser = trackRepository.findById(album.getTrackId()).get();
         Assert.assertNotSame(testUser,album);
     }
 
@@ -60,11 +60,11 @@ public class MuzixRepositoryTest {
     public void testGetAllUser(){
         Track u = new Track(11,"Baby","Justin Bieber","pop");
         Track u1 = new Track(12,"Cheap thrills","Sean pual","pop");
-        muzixRepository.save(u);
-        muzixRepository.save(u1);
+        trackRepository.save(u);
+        trackRepository.save(u1);
 
-        List<Track> list = muzixRepository.findAll();
-        Assert.assertEquals("Cheap thrills",list.get(0).getTrackname());
+        List<Track> list = trackRepository.findAll();
+        Assert.assertEquals("Cheap thrills",list.get(0).getTrackName());
 
 
 

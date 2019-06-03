@@ -13,17 +13,5 @@ public class MuzixExceptionHandler {
         return new ResponseEntity<>("erorr exception occured in Global " + e.getMessage(), HttpStatus.CONFLICT);
     }
 
-    /*public String handleTrackAlreadyExistsException(TrackAlreadyExistsException ex) {
-        return ex.getMessage();
-    }
 
-    @ExceptionHandler
-    public String handleIdNotFoundException(IdNotFoundException e) {
-        return new ResponseEntity<>("erorr exception occured in Global " + e.getMessage(), HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler
-    public String handleTrackNotFoundException(TrackNotFoundException ex) {
-        return ex.getMessage();
-    }*/
 }

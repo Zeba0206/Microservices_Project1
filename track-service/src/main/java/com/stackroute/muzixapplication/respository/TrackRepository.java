@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface MuzixRepository extends MongoRepository<Track,Integer> {
+public interface TrackRepository extends MongoRepository<Track,Integer> {
 
 }

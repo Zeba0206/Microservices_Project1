@@ -3,7 +3,7 @@ package com.stackroute.muzixapplication.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.muzixapplication.domain.Track;
 import com.stackroute.muzixapplication.exception.*;
-import com.stackroute.muzixapplication.Service.MuzixService;
+import com.stackroute.muzixapplication.Service.TrackService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,15 +30,15 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @WebMvcTest
 
-public class MuzixControllerTest {
+public class TrackControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
     private Track album;
     @MockBean
-    private MuzixService muzixService;
+    private TrackService trackService;
     @InjectMocks
-    private MuzixController muzixController;
+    private TrackController trackController;
 
     private List<Track> list =null;
 
@@ -46,7 +46,7 @@ public class MuzixControllerTest {
     public void setUp(){
 
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(muzixController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(trackController).build();
         album = new Track();
         album.setTrackId(1);
         album.setTrackName("Believer");
@@ -57,7 +57,7 @@ public class MuzixControllerTest {
     }
     @Test
     public void saveAlbum() throws Exception {
-        when(muzixService.saveAlbum(any())).thenReturn(album);
+        when(trackService.saveAlbum(any())).thenReturn(album);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v2/album")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(album)))
@@ -68,7 +68,7 @@ public class MuzixControllerTest {
 
     @Test
     public void saveTrackFailure() throws Exception {
-        when(muzixService.saveAlbum(any())).thenThrow(TrackAlreadyExistsException.class);
+        when(trackService.saveAlbum(any())).thenThrow(TrackAlreadyExistsException.class);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v2/album")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(album)))
                 .andExpect(MockMvcResultMatchers.status().isConflict())
@@ -77,7 +77,7 @@ public class MuzixControllerTest {
 
     @Test
     public void getAllTrack() throws Exception {
-        when(muzixService.getAllAlbums()).thenReturn(list);
+        when(trackService.getAllAlbums()).thenReturn(list);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v2/album")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(album)))
                 .andExpect(MockMvcResultMatchers.status().isOk())

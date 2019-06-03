@@ -1,6 +1,6 @@
 package com.stackroute.muzixapplication.controller;
 
-import com.stackroute.muzixapplication.Service.MuzixService;
+import com.stackroute.muzixapplication.Service.TrackService;
 import com.stackroute.muzixapplication.domain.Track;
 import com.stackroute.muzixapplication.exception.IdNotFoundException;
 import com.stackroute.muzixapplication.exception.TrackNotFoundException;
@@ -15,22 +15,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/")
-//@Autowired
-public class MuzixController {
+public class TrackController {
 
-    MuzixService muzixService;
+    TrackService trackService;
 
     @Autowired
-    public MuzixController(MuzixService muzixService) {
+    public TrackController(TrackService trackService) {
 
-        this.muzixService = muzixService;
+        this.trackService = trackService;
     }
 
     @PostMapping("track")
     public ResponseEntity<?> saveUser(@RequestBody Track album) {
         ResponseEntity responseEntity;
         try {
-            muzixService.saveAlbum(album);
+            trackService.saveAlbum(album);
             responseEntity = new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
 
         } catch (Exception ex) {
@@ -45,7 +44,7 @@ public class MuzixController {
     public ResponseEntity<?> updateAlbum(@RequestBody Track album) throws IdNotFoundException {
         ResponseEntity responseEntity;
         try {
-            muzixService.updateTrack(album);
+            trackService.updateTrack(album);
             responseEntity = new ResponseEntity<String>("Updated Successfully", HttpStatus.CREATED);
         } catch (IdNotFoundException exception) {
             responseEntity = new ResponseEntity<String>(exception.getMessage(), HttpStatus.CONFLICT);
@@ -58,7 +57,7 @@ public class MuzixController {
     public ResponseEntity<?> putUpdateAlbum(@RequestBody Track album) {
         ResponseEntity responseEntity;
         try {
-            muzixService.putUpdateTrack(album);
+            trackService.putUpdateTrack(album);
             responseEntity = new ResponseEntity<String>("Updated Successfully", HttpStatus.CREATED);
         } catch (IdNotFoundException exception) {
             responseEntity = new ResponseEntity<String>(exception.getMessage(), HttpStatus.CONFLICT);
@@ -70,7 +69,7 @@ public class MuzixController {
     public ResponseEntity<?> deleteTrack(@PathVariable("trackid") int trackid) throws TrackNotFoundException {
         ResponseEntity responseEntity;
         try {
-            muzixService.deleteTrack(trackid);
+            trackService.deleteTrack(trackid);
             responseEntity = new ResponseEntity<String>("Deleted successfully", HttpStatus.OK);
         } catch (TrackNotFoundException exception) {
 
@@ -81,7 +80,7 @@ public class MuzixController {
 
     @GetMapping("tracks")
     public ResponseEntity<?> getAllAlbums() {
-        return new ResponseEntity<List<Track>>(muzixService.getAllAlbums(), HttpStatus.OK);
+        return new ResponseEntity<List<Track>>(trackService.getAllAlbums(), HttpStatus.OK);
     }
 
 
