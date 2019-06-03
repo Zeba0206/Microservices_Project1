@@ -1,0 +1,9 @@
+server:
+  port: ${PORT:8761} # Indicate the default PORT where this service will be started
+
+spring:
+  application:
+    name: eureka
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}

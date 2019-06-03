@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/EurekaService.iml" filepath="$PROJECT_DIR$/eureka-server/EurekaService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservicesfinal.iml" filepath="$PROJECT_DIR$/microservicesfinal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-zuulgatewayproxy/spring-boot-zuulgatewayproxy.iml" filepath="$PROJECT_DIR$/spring-boot-zuulgatewayproxy/spring-boot-zuulgatewayproxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-config-server/spring-config-server.iml" filepath="$PROJECT_DIR$/spring-config-server/spring-config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/track-service/track-service.iml" filepath="$PROJECT_DIR$/track-service/track-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
+    </modules>
+  </component>
+</project>
